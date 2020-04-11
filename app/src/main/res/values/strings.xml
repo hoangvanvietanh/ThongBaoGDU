@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ThongBaoGDU</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Đại học Gia Định Lịch</string>
+    <string name="nav_header_subtitle">daihocgiadinh@edu.com.vn</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Làm mới</string>
+
+    <string name="menu_schedule">Lịch biểu</string>
+    <string name="menu_today">Hôm nay</string>
+    <string name="menu_threeday">3 ngày</string>
+    <string name="menu_week">Tuần</string>
+    <string name="menu_month">Tháng</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+</resources>

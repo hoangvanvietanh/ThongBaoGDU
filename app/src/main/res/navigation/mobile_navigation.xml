@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_today">
+
+    <fragment
+        android:id="@+id/nav_month"
+        android:name="com.android.thongbaogdu.ui.month.MonthFragment"
+        android:label="@string/menu_month"
+        tools:layout="@layout/fragment_month" />
+    <fragment
+        android:id="@+id/nav_threeday"
+        android:name="com.android.thongbaogdu.ui.threeday.ThreeDayFragment"
+        android:label="@string/menu_threeday"
+        tools:layout="@layout/fragment_threeday" />
+    <fragment
+        android:id="@+id/nav_today"
+        android:name="com.android.thongbaogdu.ui.today.TodayFragment"
+        android:label="@string/menu_today"
+        tools:layout="@layout/fragment_today" />
+    <fragment
+        android:id="@+id/nav_week"
+        android:name="com.android.thongbaogdu.ui.week.WeekFragment"
+        android:label="@string/menu_week"
+        tools:layout="@layout/fragment_week" />
+</navigation>
