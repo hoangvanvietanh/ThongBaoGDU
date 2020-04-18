@@ -21,7 +21,6 @@ import com.alamkanak.weekview.OnMonthChangeListener;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewDisplayable;
 import com.android.thongbaogdu.R;
-import com.android.thongbaogdu.data.EventsApi;
 import com.android.thongbaogdu.data.EventsDatabase;
 import com.android.thongbaogdu.data.model.Event;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;

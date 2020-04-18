@@ -7,10 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.alamkanak.weekview.OnEmptyViewClickListener;
 import com.alamkanak.weekview.OnEmptyViewLongClickListener;
@@ -20,7 +17,6 @@ import com.alamkanak.weekview.OnMonthChangeListener;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewDisplayable;
 import com.android.thongbaogdu.R;
-import com.android.thongbaogdu.data.EventsApi;
 import com.android.thongbaogdu.data.EventsDatabase;
 import com.android.thongbaogdu.data.model.Event;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -37,7 +33,6 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class WeekFragment extends Fragment implements OnEventClickListener<Event>, OnMonthChangeListener<Event>,
         OnEventLongClickListener<Event>, OnEmptyViewLongClickListener , OnEmptyViewClickListener {
 
-    private EventsApi api;
     private EventsDatabase database;
     private CompactCalendarView compactCalendarView;
     private View root;
@@ -49,7 +44,6 @@ public class WeekFragment extends Fragment implements OnEventClickListener<Event
 //                ViewModelProviders.of(this).get(WeekViewModel.class);
         root = inflater.inflate(R.layout.fragment_week, container, false);
         WeekView<Event> weekView = root.findViewById(R.id.weekView);
-        api = new EventsApi(getActivity());
         database = new EventsDatabase(getActivity());
         weekView.setOnEventClickListener(this);
         weekView.setOnMonthChangeListener(this);

@@ -40,11 +40,13 @@ public class MainActivity extends AppCompatActivity  {
     private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
     private  Date currentDate = new Date();
     private ActionBar actionBar;
+    private String textTest = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Toast.makeText(this, textTest, Toast.LENGTH_SHORT).show();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
@@ -54,12 +56,18 @@ public class MainActivity extends AppCompatActivity  {
         compactCalendarView.setUseThreeLetterAbbreviation(true);
         compactCalendarView.hideCalendar();
         actionBar = getSupportActionBar();
+
         // define a listener to receive callbacks when certain events happen.
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
+
                 actionBar.setTitle(dateFormatForMonth.format(dateClicked).toUpperCase());
-                Toast.makeText(MainActivity.this, "Date: " + dateClicked.toString(), Toast.LENGTH_SHORT).show();
+                weekView = findViewById(R.id.weekView);
+                Calendar calendar =Calendar.getInstance();
+                calendar.setTime(dateClicked);
+                weekView.goToDate(calendar);
+                Toast.makeText(MainActivity.this, "Datess: " + dateClicked.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

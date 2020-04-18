@@ -20,6 +20,7 @@ import com.alamkanak.weekview.OnEventLongClickListener;
 import com.alamkanak.weekview.OnMonthChangeListener;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewDisplayable;
+import com.alamkanak.weekview.WeekViewEvent;
 import com.android.thongbaogdu.R;
 import com.android.thongbaogdu.data.EventsDatabase;
 import com.android.thongbaogdu.data.model.Event;
@@ -45,6 +46,7 @@ public class MonthFragment extends Fragment implements OnEventClickListener<Even
         root = inflater.inflate(R.layout.fragment_month, container, false);
         WeekView<Event> weekView = root.findViewById(R.id.weekView);
         database = new EventsDatabase(getActivity());
+
         weekView.setOnEventClickListener(this);
         weekView.setOnMonthChangeListener(this);
         weekView.setOnEventLongClickListener(this);
@@ -78,4 +80,6 @@ public class MonthFragment extends Fragment implements OnEventClickListener<Even
     public void onEmptyViewClicked(@NotNull Calendar calendar) {
         Toast.makeText(getActivity(), "Empty view long pressed: ", LENGTH_SHORT).show();
     }
+
+
 }
