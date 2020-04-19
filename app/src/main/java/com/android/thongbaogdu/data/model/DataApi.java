@@ -1,5 +1,6 @@
 package com.android.thongbaogdu.data.model;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.TextView;
@@ -26,20 +27,29 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class DataApi {
 
-    ArrayList<Employee> employeeArrayList = new ArrayList<Employee>();
+    private ArrayList<Employee> employeeArrayList = new ArrayList<Employee>();
 
     public DataApi()
     {
         HttpGetRequest request = new HttpGetRequest();
-        request.execute();
+        try {
+            String result = request.execute().get();
+            request.onPostExecute(result);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         employeeArrayList = request.getAllEmployee();
     }
 
@@ -96,7 +106,7 @@ public class DataApi {
 
 
     public class HttpGetRequest extends AsyncTask<Void, Void, String> {
-        ArrayList<Account> accountArrayList = new ArrayList<Account>();
+        ArrayList<Employee> employeesArrayList = new ArrayList<Employee>();
         static final String REQUEST_METHOD = "GET";
         static final int READ_TIMEOUT = 15000;
         static final int CONNECTION_TIMEOUT = 15000;
@@ -162,9 +172,9 @@ public class DataApi {
                     }
                     //List<Schedule> schedule = Arrays.asList(mapper.readValue(scheduleJson, Schedule[].class));
                     Account account = gson.fromJson(accountJson,Account.class);
-                    System.out.println(account.getUserName() + "----------------------------------------||||||");
+                    System.out.println(account.getUserName() + "----------------------------------------||||||---->" + schedulesList.size());
                     Employee employee = new Employee( _id, employee_id ,full_name,  email,  birth_day,  phone_number,  position,  department,  image,  address,account,schedulesList);
-                    employeeArrayList.add(employee);
+                    employeesArrayList.add(employee);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -174,8 +184,11 @@ public class DataApi {
 
         public ArrayList<Employee> getAllEmployee()
         {
-            return employeeArrayList;
+            System.out.println("Check reurn employee--->" + employeesArrayList.size());
+            return employeesArrayList;
         }
     }
+
+
 
 }

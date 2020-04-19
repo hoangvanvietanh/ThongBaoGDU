@@ -64,7 +64,7 @@ public class WeekFragment extends Fragment implements OnEventClickListener<Event
     @Override
     public List<WeekViewDisplayable<Event>> onMonthChange(@NonNull Calendar startDate,
                                                           @NonNull Calendar endDate) {
-        return database.getEventsInRange(startDate, endDate);
+        return database.getEventsInRange();
     }
 
     @Override

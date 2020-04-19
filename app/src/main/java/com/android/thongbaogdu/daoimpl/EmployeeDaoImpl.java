@@ -12,6 +12,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 
     @Override
     public ArrayList<Employee> getAllEmployee() {
+        System.out.println("Dao impl ------------------------>" + dataApi.getAllEmployee().size());
         return dataApi.getAllEmployee();
     }
 }

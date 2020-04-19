@@ -20,23 +20,40 @@ class EventsDatabase(context: Context) {
     private val employeeServices =  EmployeeServices().allEmployee
 
     fun getEventsInRange(
-        startDate: Calendar,
-        endDate: Calendar
+        //startDate: Calendar,
+        //endDate: Calendar
     ): List<WeekViewDisplayable<Event>> {
 
-        val year = startDate.get(Calendar.YEAR)
-        val month = startDate.get(Calendar.MONTH)
-        val monthEnd = endDate.get(Calendar.MONTH)
-        val yearEnd = endDate.get(Calendar.YEAR)
-        val idOffset = year + 10L * month
+        //val year = startDate.get(Calendar.YEAR)
+        //val month = startDate.get(Calendar.MONTH)
+        //val monthEnd = endDate.get(Calendar.MONTH)
+        //val yearEnd = endDate.get(Calendar.YEAR)
+        //val idOffset = year + 10L * month
         val events = mutableListOf<WeekViewDisplayable<Event>>()
         var i  = 0;
-        println("---------------------------------------------------------------------------------------->")
+        println("sss---------------------------------------------------------------------------------------->" + employeeServices.size)
         for (employee in employeeServices)
         {
             for(schedule in employee.schedules)
             {
                 i += 1;
+                var color = color1;
+                if(schedule.color == 1)
+                {
+                    color = color1;
+                }
+                else if(schedule.color == 2)
+                {
+                    color = color2;
+                }
+                else if(schedule.color == 3)
+                {
+                    color = color3;
+                }
+                else
+                {
+                    color = color4;
+                }
                 events += newEvent(
                         id =  schedule.id,
                         year = schedule.year,
@@ -45,9 +62,9 @@ class EventsDatabase(context: Context) {
                         hour = schedule.hour,
                         minute = schedule.minute,
                         duration = schedule.duration,
-                        //isAllDay = schedule.isAllDay,
-                        //isCanceled = schedule.isCanceled,
-                        color = color1,
+                        isAllDay = schedule.isAllDay,
+                        isCanceled = schedule.isCanceled,
+                        color = color,
                         content = schedule.content
                 )
                 println( i.toString() + ":::year: "+schedule.year + "=== month: " + schedule.month + "===> day: " + schedule.day_of_month);

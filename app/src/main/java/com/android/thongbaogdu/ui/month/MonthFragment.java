@@ -46,7 +46,6 @@ public class MonthFragment extends Fragment implements OnEventClickListener<Even
         root = inflater.inflate(R.layout.fragment_month, container, false);
         WeekView<Event> weekView = root.findViewById(R.id.weekView);
         database = new EventsDatabase(getActivity());
-
         weekView.setOnEventClickListener(this);
         weekView.setOnMonthChangeListener(this);
         weekView.setOnEventLongClickListener(this);
@@ -57,7 +56,7 @@ public class MonthFragment extends Fragment implements OnEventClickListener<Even
     @Override
     public List<WeekViewDisplayable<Event>> onMonthChange(@NonNull Calendar startDate,
                                                           @NonNull Calendar endDate) {
-        return database.getEventsInRange(startDate, endDate);
+        return database.getEventsInRange();
     }
 
     @Override

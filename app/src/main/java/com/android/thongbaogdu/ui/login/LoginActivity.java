@@ -41,6 +41,7 @@ import com.android.thongbaogdu.data.model.Schedule;
 import com.android.thongbaogdu.services.EmployeeServices;
 import com.android.thongbaogdu.services.NotificationService;
 import com.android.thongbaogdu.services.ReminderBroadcast;
+import com.android.thongbaogdu.ui.schedule.ScheduleActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -73,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
+        loginViewModel = ViewModelProviders.of(LoginActivity.this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
@@ -84,8 +85,6 @@ public class LoginActivity extends AppCompatActivity {
         createNotificationChannel();
 
         employeeArrayList = employeeServices.getAllEmployee();
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(onButtonClickListener);
 
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -167,27 +166,18 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    View.OnClickListener onButtonClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-            Toast.makeText(LoginActivity.this, "Remider set!", Toast.LENGTH_SHORT).show();
-
-            NotificationService notificationService = new NotificationService();
-            notificationService.createNotification(LoginActivity.this, ALARM_SERVICE, employeeArrayList);
-
-            HttpSendData request = new HttpSendData("{'name': 'Việt Anh'', 'job': 'Được rồi nè hihi''}");
-            request.execute();
-            System.out.println( "<----------------------------------------------------------->" + SystemClock.elapsedRealtime());
-            System.out.println(employeeArrayList.get(0).getFullName() + "---->");
-        }
-    };
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
-        Intent myIntent = new Intent(this, MainActivity.class);
+        Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+        myIntent.putExtra("USERNAME",model.getDisplayName());
         startActivity(myIntent);
+
+        for(Employee employee: employeeArrayList)
+        {
+            Toast.makeText(this, employee.getFullName(), Toast.LENGTH_SHORT).show();
+        }
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 

@@ -11,6 +11,7 @@ public class EmployeeServices {
 
     public ArrayList<Employee> getAllEmployee()
     {
-        return employeeDao.getAllEmployee();
+        System.out.println("Dao ------------------------->" + employeeDao.getAllEmployee().size());
+        return  employeeDao.getAllEmployee();
     }
 }

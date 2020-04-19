@@ -1,5 +1,6 @@
 package com.android.thongbaogdu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
+import com.android.thongbaogdu.ui.schedule.ScheduleActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -80,8 +82,12 @@ public class MainActivity extends AppCompatActivity  {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                String username = getIntent().getStringExtra("USERNAME");
+                Intent myIntent = new Intent(MainActivity.this, ScheduleActivity.class);
+                myIntent.putExtra("USERNAME",username);
+                startActivity(myIntent);
                 Toast.makeText(MainActivity.this, "Okey", Toast.LENGTH_SHORT).show();
             }
         });
@@ -135,12 +141,13 @@ public class MainActivity extends AppCompatActivity  {
                     compactCalendarView.showCalendarWithAnimation();
                 return true;
             case R.id.show_today:
-                weekView.goToCurrentTime();
-                compactCalendarView.setCurrentDate(currentDate);
+                weekView.goToCurrentTime();// cái này là phần dưới
+                compactCalendarView.setCurrentDate(currentDate);// cái này là lịch ở trên
                 actionBar.setTitle(dateFormatForMonth.format(currentDate).toUpperCase());
-                Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "ok haha", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.nav_today:
+
                 Toast.makeText(MainActivity.this, "Today", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.nav_threeday:

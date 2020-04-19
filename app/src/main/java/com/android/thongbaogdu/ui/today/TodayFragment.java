@@ -1,4 +1,5 @@
 package com.android.thongbaogdu.ui.today;
+import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -20,9 +23,12 @@ import com.alamkanak.weekview.OnEventLongClickListener;
 import com.alamkanak.weekview.OnMonthChangeListener;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewDisplayable;
+import com.android.thongbaogdu.MainActivity;
 import com.android.thongbaogdu.R;
 import com.android.thongbaogdu.data.EventsDatabase;
 import com.android.thongbaogdu.data.model.Event;
+import com.android.thongbaogdu.ui.login.LoginActivity;
+import com.android.thongbaogdu.ui.schedule.ScheduleActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +36,9 @@ import org.jetbrains.annotations.NotNull;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -42,13 +50,19 @@ public class TodayFragment extends Fragment implements OnEventClickListener<Even
     private View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        database = new EventsDatabase(getActivity());
+        SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("dd-MMMM- yyyy", Locale.getDefault());
+        Date currentDate = new Date();
         root = inflater.inflate(R.layout.fragment_today, container, false);
         WeekView<Event> weekView = root.findViewById(R.id.weekView);
-        database = new EventsDatabase(getActivity());
+
         weekView.setOnEventClickListener(this);
         weekView.setOnMonthChangeListener(this);
         weekView.setOnEventLongClickListener(this);
         weekView.setOnEmptyViewLongClickListener(this);
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(dateFormatForMonth.format(currentDate).toUpperCase());
+        weekView.goToCurrentTime();
         return root;
     }
 
@@ -56,7 +70,8 @@ public class TodayFragment extends Fragment implements OnEventClickListener<Even
     @Override
     public List<WeekViewDisplayable<Event>> onMonthChange(@NonNull Calendar startDate,
                                                           @NonNull Calendar endDate) {
-        return database.getEventsInRange(startDate, endDate);
+
+        return database.getEventsInRange();
     }
 
     @Override
@@ -71,6 +86,11 @@ public class TodayFragment extends Fragment implements OnEventClickListener<Even
 
     @Override
     public void onEmptyViewLongClick(@NonNull Calendar time) {
+        String username = getActivity().getIntent().getStringExtra("USERNAME");
+        Intent myIntent2 = new Intent(getContext(), ScheduleActivity.class);
+        myIntent2.putExtra("USERNAME",username);
+        startActivity(myIntent2);
+
         DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
         String formattedTime = sdf.format(time.getTime());
         Toast.makeText(getActivity(), "Empty view long pressed: " + formattedTime, LENGTH_SHORT).show();
