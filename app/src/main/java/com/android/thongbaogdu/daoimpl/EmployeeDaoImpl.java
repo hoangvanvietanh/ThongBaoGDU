@@ -15,4 +15,17 @@ public class EmployeeDaoImpl implements IEmployeeDao {
         System.out.println("Dao impl ------------------------>" + dataApi.getAllEmployee().size());
         return dataApi.getAllEmployee();
     }
+
+    @Override
+    public Employee getEmployeeByUserName(String username) {
+        Employee employee = new Employee();
+        for (Employee emp:  dataApi.getAllEmployee())
+        {
+            if(emp.getAccount().getUserName().trim().equals(username.trim()))
+            {
+                employee = emp;
+            }
+        }
+        return employee;
+    }
 }

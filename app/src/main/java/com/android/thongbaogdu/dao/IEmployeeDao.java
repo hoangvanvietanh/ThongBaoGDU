@@ -6,4 +6,5 @@ import java.util.ArrayList;
 
 public interface IEmployeeDao {
     ArrayList<Employee> getAllEmployee();
+    Employee getEmployeeByUserName(String username);
 }

@@ -43,7 +43,8 @@ public class ThreeDayFragment extends Fragment implements OnEventClickListener<E
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        database = new EventsDatabase(getActivity());
+        String username = getActivity().getIntent().getStringExtra("USERNAME");
+        database = new EventsDatabase(getActivity(),username);
         root = inflater.inflate(R.layout.fragment_threeday, container, false);
         WeekView<Event> weekView = root.findViewById(R.id.weekView);
         weekView.setOnEventClickListener(this);

@@ -12,12 +12,12 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class EventsDatabase(context: Context) {
+class EventsDatabase(context: Context, username: String) {
     private val color1 = ContextCompat.getColor(context, R.color.event_color_01)
     private val color2 = ContextCompat.getColor(context, R.color.event_color_02)
     private val color3 = ContextCompat.getColor(context, R.color.event_color_03)
     private val color4 = ContextCompat.getColor(context, R.color.event_color_04)
-    private val employeeServices =  EmployeeServices().allEmployee
+    private val employeeServices =  EmployeeServices().getEmployByUserName(username);
 
     fun getEventsInRange(
         //startDate: Calendar,
@@ -31,10 +31,8 @@ class EventsDatabase(context: Context) {
         //val idOffset = year + 10L * month
         val events = mutableListOf<WeekViewDisplayable<Event>>()
         var i  = 0;
-        println("sss---------------------------------------------------------------------------------------->" + employeeServices.size)
-        for (employee in employeeServices)
-        {
-            for(schedule in employee.schedules)
+        println("sss---------------------------------------------------------------------------------------->" + employeeServices.account.userName)
+            for(schedule in employeeServices.schedules)
             {
                 i += 1;
                 var color = color1;
@@ -69,8 +67,6 @@ class EventsDatabase(context: Context) {
                 )
                 println( i.toString() + ":::year: "+schedule.year + "=== month: " + schedule.month + "===> day: " + schedule.day_of_month);
             }
-
-        }
 
 
         // Add multi-day event

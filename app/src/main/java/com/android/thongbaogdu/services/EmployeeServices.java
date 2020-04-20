@@ -14,4 +14,10 @@ public class EmployeeServices {
         System.out.println("Dao ------------------------->" + employeeDao.getAllEmployee().size());
         return  employeeDao.getAllEmployee();
     }
+
+    public Employee getEmployByUserName(String username)
+    {
+        return  employeeDao.getEmployeeByUserName(username);
+    }
+
 }

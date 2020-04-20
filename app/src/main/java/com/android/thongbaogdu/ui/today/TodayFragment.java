@@ -50,7 +50,8 @@ public class TodayFragment extends Fragment implements OnEventClickListener<Even
     private View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        database = new EventsDatabase(getActivity());
+        String username = getActivity().getIntent().getStringExtra("USERNAME");
+        database = new EventsDatabase(getActivity(),username);
         SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("dd-MMMM- yyyy", Locale.getDefault());
         Date currentDate = new Date();
         root = inflater.inflate(R.layout.fragment_today, container, false);

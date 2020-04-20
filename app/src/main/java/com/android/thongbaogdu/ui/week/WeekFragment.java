@@ -44,7 +44,8 @@ public class WeekFragment extends Fragment implements OnEventClickListener<Event
 //                ViewModelProviders.of(this).get(WeekViewModel.class);
         root = inflater.inflate(R.layout.fragment_week, container, false);
         WeekView<Event> weekView = root.findViewById(R.id.weekView);
-        database = new EventsDatabase(getActivity());
+        String username = getActivity().getIntent().getStringExtra("USERNAME");
+        database = new EventsDatabase(getActivity(),username);
         weekView.setOnEventClickListener(this);
         weekView.setOnMonthChangeListener(this);
         weekView.setOnEventLongClickListener(this);

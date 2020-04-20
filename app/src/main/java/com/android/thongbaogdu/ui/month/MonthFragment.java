@@ -45,7 +45,8 @@ public class MonthFragment extends Fragment implements OnEventClickListener<Even
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_month, container, false);
         WeekView<Event> weekView = root.findViewById(R.id.weekView);
-        database = new EventsDatabase(getActivity());
+        String username = getActivity().getIntent().getStringExtra("USERNAME");
+        database = new EventsDatabase(getActivity(),username);
         weekView.setOnEventClickListener(this);
         weekView.setOnMonthChangeListener(this);
         weekView.setOnEventLongClickListener(this);

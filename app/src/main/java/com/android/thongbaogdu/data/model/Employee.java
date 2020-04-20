@@ -17,6 +17,11 @@ public class Employee {
     private Account Account;
     private ArrayList<Schedule> Schedules;
 
+    public Employee()
+    {
+
+    }
+
     public Employee(String _id, String employeeId, String fullName, String email, String birthDate, String phoneNumber, String positionName, String departmentName, String image, String address, com.android.thongbaogdu.data.model.Account account, ArrayList<Schedule> schedules) {
         this._id = _id;
         EmployeeId = employeeId;
