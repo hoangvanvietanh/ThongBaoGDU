@@ -86,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
 
         employeeArrayList = employeeServices.getAllEmployee();
 
-
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {

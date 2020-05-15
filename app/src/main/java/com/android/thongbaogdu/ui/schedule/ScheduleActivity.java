@@ -19,6 +19,7 @@ import com.android.thongbaogdu.MainActivity;
 import com.android.thongbaogdu.R;
 import com.android.thongbaogdu.data.model.Schedule;
 import com.android.thongbaogdu.services.EmployeeServices;
+import com.android.thongbaogdu.services.NotificationService;
 import com.android.thongbaogdu.services.ScheduleService;
 
 import java.text.ParseException;
@@ -35,7 +36,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
     Button  btnDateFrom, btnDateTo, btnTimeFrom, btnTimeTo;
     EditText txtDate, txtTime;
     private int mYear, mMonth, mDay, mHour, mMinute;
-    private String dateTimeFrom, dateTimeTo;
+    private String dateFrom, timeFrom, dateTo, timeTo, dateTimeFrom, dateTimeTo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
         btnTimeFrom.setOnClickListener(this);
         btnTimeTo.setOnClickListener(this);
 
+        System.out.println("check nè========>" + btnDateFrom + "---------" + btnTimeFrom +"--"+btnTimeTo);
         setDateTimeButton(btnDateFrom,btnDateTo,btnTimeFrom,btnTimeTo);
 
         System.out.println("get duration ====================>" + getDuration(dateTimeTo,dateTimeFrom));
@@ -68,6 +70,9 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                 Switch switchAllDay = (Switch)findViewById(R.id.switchAllDay);
                 boolean isAllDay = switchAllDay.isChecked();
                 try {
+                    dateTimeFrom = dateFrom + " " + timeFrom;
+                    dateTimeTo = dateTo + " " + timeTo;
+
                     Date dateTime = dateFormat.parse(dateTimeFrom);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(dateTime);
@@ -84,6 +89,10 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                     String username = getIntent().getStringExtra("USERNAME");
                     scheduleService.addSchedule(schedule,username);
                     Intent myIntent = new Intent(ScheduleActivity.this, MainActivity.class);
+
+                    NotificationService notificationService = new NotificationService();
+                    notificationService.createNotification2(ScheduleActivity.this, ALARM_SERVICE, username, schedule);
+
                     myIntent.putExtra("USERNAME",username);
                     startActivity(myIntent);
                 } catch (ParseException e) {
@@ -110,7 +119,8 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
         SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
         String formattedTimeFrom = formatTime.format(currentTime);
         timeFrom.setText(formattedTimeFrom);
-
+        this.dateFrom = formattedDateFrom;
+        this.timeFrom = formattedTimeFrom;
         dateTimeFrom = formattedDateFrom +" "+formattedTimeFrom;
         dateFrom.setText(formattedDateFrom);
 
@@ -121,6 +131,8 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
         String formattedDateTo = formatDate.format(cal.getTime());
         dateTo.setText(formattedDateTo);
         timeTo.setText(formattedTimeTo);
+        this.dateTo = formattedDateTo;
+        this.timeTo = formattedTimeTo;
         dateTimeTo = formattedDateTo +" "+formattedTimeTo;
     }
 
@@ -144,6 +156,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         final Calendar c = Calendar.getInstance();
+
         if (v == btnDateFrom) {
 
             // Get Current Date
@@ -157,6 +170,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             btnDateFrom.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
+                            dateFrom = dayOfMonth + "/" + (month + 1) + "/" + year;
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
@@ -175,6 +189,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             btnDateTo.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
+                            dateTo = dayOfMonth + "/" + (month + 1) + "/" + year;
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
@@ -192,6 +207,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                             btnTimeFrom.setText(hourOfDay + ":" + minute);
+                            timeFrom =  hourOfDay + ":" + minute;
                         }
                     }, mHour, mMinute, true );
             timePickerDialog.show();
@@ -209,6 +225,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                             btnTimeTo.setText(hourOfDay + ":" + minute);
+                            timeTo =  hourOfDay + ":" + minute;
                         }
                     }, mHour, mMinute, true );
             timePickerDialog.show();

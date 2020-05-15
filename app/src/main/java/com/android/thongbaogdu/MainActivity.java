@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
+import com.android.thongbaogdu.services.NotificationService;
+import com.android.thongbaogdu.ui.login.LoginActivity;
 import com.android.thongbaogdu.ui.schedule.ScheduleActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -59,6 +61,9 @@ public class MainActivity extends AppCompatActivity  {
         compactCalendarView.hideCalendar();
         actionBar = getSupportActionBar();
 
+        String username = getIntent().getStringExtra("USERNAME");
+        Toast.makeText(this, "set đc nhè", Toast.LENGTH_SHORT).show();
+
         // define a listener to receive callbacks when certain events happen.
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -85,6 +90,10 @@ public class MainActivity extends AppCompatActivity  {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
                 String username = getIntent().getStringExtra("USERNAME");
+
+                NotificationService notificationService = new NotificationService();
+                notificationService.createNotification(MainActivity.this, ALARM_SERVICE, username);
+
                 Intent myIntent = new Intent(MainActivity.this, ScheduleActivity.class);
                 myIntent.putExtra("USERNAME",username);
                 startActivity(myIntent);
