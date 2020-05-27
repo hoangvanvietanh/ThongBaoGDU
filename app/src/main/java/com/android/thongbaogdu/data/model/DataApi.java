@@ -152,7 +152,6 @@ public class DataApi {
                 ObjectMapper mapper = new ObjectMapper();
                 Gson gson = new Gson();
                 for (int i = 0; i < arr.length(); i++) {
-                    String _id = arr.getJSONObject(i).getString("_id");
                     String employee_id = arr.getJSONObject(i).getString("EmployeeId");
                     String full_name = arr.getJSONObject(i).getString("FullName");
                     String email = arr.getJSONObject(i).getString("Email");
@@ -173,7 +172,7 @@ public class DataApi {
                     //List<Schedule> schedule = Arrays.asList(mapper.readValue(scheduleJson, Schedule[].class));
                     Account account = gson.fromJson(accountJson,Account.class);
                     System.out.println(account.getUserName() + "----------------------------------------||||||---->" + schedulesList.size());
-                    Employee employee = new Employee( _id, employee_id ,full_name,  email,  birth_day,  phone_number,  position,  department,  image,  address,account,schedulesList);
+                    Employee employee = new Employee( employee_id ,full_name,  email,  birth_day,  phone_number,  position,  department,  image,  address,account,schedulesList);
                     employeesArrayList.add(employee);
                 }
             } catch (JSONException e) {

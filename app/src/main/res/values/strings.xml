@@ -5,6 +5,7 @@
     <string name="nav_header_title">Đại học Gia Định Lịch</string>
     <string name="nav_header_subtitle">daihocgiadinh@edu.com.vn</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_logout">Logout</string>
     <string name="action_settings">Làm mới</string>
 
     <string name="menu_schedule">Lịch biểu</string>

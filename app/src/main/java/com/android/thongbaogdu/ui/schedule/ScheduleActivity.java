@@ -98,11 +98,6 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
-
-
-
-
                 // Code here executes on main thread after user presses button
             }
         });

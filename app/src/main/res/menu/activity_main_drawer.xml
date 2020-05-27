@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_today"
             android:icon="@drawable/ic_menu_today"
+            app:showAsAction="ifRoom"
             android:title="@string/menu_today" />
         <item
             android:id="@+id/nav_threeday"
             android:icon="@drawable/ic_menu_threeday"
+            app:showAsAction="ifRoom"
             android:title="@string/menu_threeday" />
         <item
             android:id="@+id/nav_week"
             android:icon="@drawable/ic_menu_week"
+            app:showAsAction="ifRoom"
             android:title="@string/menu_week" />
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_menu_week"
+            app:showAsAction="ifRoom"
+            android:title="@string/nav_logout" />
+        <item
+            android:id="@+id/nav_Logout"
+            android:icon="@drawable/ic_menu_week"
+            app:showAsAction="ifRoom"
+            android:title="@string/nav_logout" />
 <!--        <item-->
 <!--            android:id="@+id/nav_month"-->
 <!--            android:icon="@drawable/ic_menu_month"-->

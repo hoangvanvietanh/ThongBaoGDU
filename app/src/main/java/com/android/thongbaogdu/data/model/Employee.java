@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
-    private String _id;
     private String EmployeeId;
     private String FullName;
     private String Email;
@@ -22,8 +21,8 @@ public class Employee {
 
     }
 
-    public Employee(String _id, String employeeId, String fullName, String email, String birthDate, String phoneNumber, String positionName, String departmentName, String image, String address, com.android.thongbaogdu.data.model.Account account, ArrayList<Schedule> schedules) {
-        this._id = _id;
+    public Employee( String employeeId, String fullName, String email, String birthDate, String phoneNumber, String positionName, String departmentName, String image, String address, com.android.thongbaogdu.data.model.Account account, ArrayList<Schedule> schedules) {
+
         EmployeeId = employeeId;
         FullName = fullName;
         Email = email;
@@ -37,13 +36,6 @@ public class Employee {
         Schedules = schedules;
     }
 
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
 
     public String getEmployeeId() {
         return EmployeeId;

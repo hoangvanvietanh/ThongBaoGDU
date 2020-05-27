@@ -11,6 +11,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -69,17 +70,32 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private ArrayList<Employee> employeeArrayList = new ArrayList<Employee>();
     private EmployeeServices employeeServices = new EmployeeServices();
-
+    private EditText usernameEditText;
+    private EditText passwordEditText;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(LoginActivity.this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
+        String userName=sp1.getString("UserName", null);
+        String password = sp1.getString("Password", null);
+
+        System.out.println("===> username: " + userName);
+        System.out.println("===> password: " + password);
+
+        if(userName != null)
+        {
+            if(password != null)
+            {
+                loginViewModel.login(userName,password);
+            }
+        }
 
 
         createNotificationChannel();
@@ -158,6 +174,12 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+                SharedPreferences.Editor Ed=sp.edit();
+                Ed.putString("UserName",usernameEditText.getText().toString());
+                Ed.putString("Password",passwordEditText.getText().toString());
+                //Toast.makeText(this, "Okey con dê " + usernameEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+                Ed.commit();
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
@@ -171,6 +193,9 @@ public class LoginActivity extends AppCompatActivity {
         // TODO : initiate successful logged in experience
         Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
         myIntent.putExtra("USERNAME",model.getDisplayName());
+
+
+
         startActivity(myIntent);
 
         for(Employee employee: employeeArrayList)

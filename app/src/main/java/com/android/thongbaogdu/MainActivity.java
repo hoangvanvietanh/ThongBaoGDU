@@ -1,6 +1,7 @@
 package com.android.thongbaogdu;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,9 +17,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
+import android.app.FragmentTransaction;
+
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -123,12 +128,51 @@ public class MainActivity extends AppCompatActivity  {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Toast.makeText(MainActivity.this, "id: "+ item.getItemId(), Toast.LENGTH_SHORT).show();
+                WeekView weekView = findViewById(R.id.weekView);
+                switch (item.getItemId()) {
+                    case R.id.nav_today:
+                        Toast.makeText(MainActivity.this, "Today", Toast.LENGTH_SHORT).show();
+                        weekView.setNumberOfVisibleDays(1);
+                        drawer.closeDrawer(GravityCompat.START);
+                        return true;
+                    case R.id.nav_threeday:
+                        Toast.makeText(MainActivity.this, "Three day", Toast.LENGTH_SHORT).show();
+                        weekView.setNumberOfVisibleDays(3);
+                        drawer.closeDrawer(GravityCompat.START);
+                        return true;
+                    case R.id.nav_week:
+                        Toast.makeText(MainActivity.this, "Month", Toast.LENGTH_SHORT).show();
+                        weekView.setNumberOfVisibleDays(7);
+                        drawer.closeDrawer(GravityCompat.START);
+                        return true;
+                    case R.id.nav_Logout:
+                        //Toast.makeText(this, "Logout ^^", Toast.LENGTH_SHORT).show();
+                        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+                        SharedPreferences.Editor Ed=sp.edit();
+                        Ed.putString("UserName",null);
+                        Ed.putString("Password",null);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        //Toast.makeText(this, "Okey con dê " + usernameEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+                        Ed.commit();
+                        return true;
+                    default:
+                        return true;
+                }
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         return true;
     }
 
@@ -136,6 +180,7 @@ public class MainActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         weekView = findViewById(R.id.weekView);
+        Toast.makeText(this, "id: " + item.getItemId(), Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case R.id.miProfile:
                 if(isShowCalendar == true)
@@ -153,17 +198,7 @@ public class MainActivity extends AppCompatActivity  {
                 weekView.goToCurrentTime();// cái này là phần dưới
                 compactCalendarView.setCurrentDate(currentDate);// cái này là lịch ở trên
                 actionBar.setTitle(dateFormatForMonth.format(currentDate).toUpperCase());
-                Toast.makeText(MainActivity.this, "ok haha", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.nav_today:
-
-                Toast.makeText(MainActivity.this, "Today", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.nav_threeday:
-                Toast.makeText(MainActivity.this, "Three day", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.nav_month:
-                Toast.makeText(MainActivity.this, "Month", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "ok haha", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
