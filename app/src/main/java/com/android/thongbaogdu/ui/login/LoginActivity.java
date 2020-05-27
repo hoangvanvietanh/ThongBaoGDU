@@ -2,6 +2,7 @@ package com.android.thongbaogdu.ui.login;
 
 import android.app.Activity;
 
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -76,6 +77,10 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorGduBlue));
+        }
+
         loginViewModel = ViewModelProviders.of(LoginActivity.this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
         usernameEditText = findViewById(R.id.username);

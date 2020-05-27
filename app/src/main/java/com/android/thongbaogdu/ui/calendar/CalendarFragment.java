@@ -1,20 +1,18 @@
-package com.android.thongbaogdu.ui.today;
+package com.android.thongbaogdu.ui.calendar;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.alamkanak.weekview.OnEmptyViewClickListener;
 import com.alamkanak.weekview.OnEmptyViewLongClickListener;
@@ -23,11 +21,9 @@ import com.alamkanak.weekview.OnEventLongClickListener;
 import com.alamkanak.weekview.OnMonthChangeListener;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewDisplayable;
-import com.android.thongbaogdu.MainActivity;
 import com.android.thongbaogdu.R;
 import com.android.thongbaogdu.data.EventsDatabase;
 import com.android.thongbaogdu.data.model.Event;
-import com.android.thongbaogdu.ui.login.LoginActivity;
 import com.android.thongbaogdu.ui.schedule.ScheduleActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
@@ -42,7 +38,7 @@ import java.util.Locale;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class TodayFragment extends Fragment implements OnEventClickListener<Event>, OnMonthChangeListener<Event>,
+public class CalendarFragment extends Fragment implements OnEventClickListener<Event>, OnMonthChangeListener<Event>,
         OnEventLongClickListener<Event>, OnEmptyViewLongClickListener, OnEmptyViewClickListener {
 
     private EventsDatabase database;
@@ -50,11 +46,12 @@ public class TodayFragment extends Fragment implements OnEventClickListener<Even
     private View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        String username = getActivity().getIntent().getStringExtra("USERNAME");
+        SharedPreferences sp1=getContext().getSharedPreferences("Login", Context.MODE_PRIVATE);
+        String username=sp1.getString("UserName", null);
         database = new EventsDatabase(getActivity(),username);
         SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("dd-MMMM- yyyy", Locale.getDefault());
         Date currentDate = new Date();
-        root = inflater.inflate(R.layout.fragment_today, container, false);
+        root = inflater.inflate(R.layout.fragment_calendar, container, false);
         WeekView<Event> weekView = root.findViewById(R.id.weekView);
 
         weekView.setOnEventClickListener(this);

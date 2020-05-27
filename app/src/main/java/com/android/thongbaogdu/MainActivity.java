@@ -2,6 +2,7 @@ package com.android.thongbaogdu;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.alamkanak.weekview.WeekView;
 import com.android.thongbaogdu.services.NotificationService;
 import com.android.thongbaogdu.ui.login.LoginActivity;
+import com.android.thongbaogdu.ui.profile.ProfileActivity;
 import com.android.thongbaogdu.ui.schedule.ScheduleActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import android.app.FragmentTransaction;
 
@@ -55,6 +58,9 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorGduBlue));
+        }
         //Toast.makeText(this, textTest, Toast.LENGTH_SHORT).show();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity  {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_today, R.id.nav_threeday,R.id.nav_week, R.id.nav_month)
+                R.id.nav_today, R.id.nav_threeday,R.id.nav_week)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -149,6 +155,10 @@ public class MainActivity extends AppCompatActivity  {
                         Toast.makeText(MainActivity.this, "Month", Toast.LENGTH_SHORT).show();
                         weekView.setNumberOfVisibleDays(7);
                         drawer.closeDrawer(GravityCompat.START);
+                        return true;
+                    case R.id.nav_info:
+                        Intent myIntentProfile = new Intent(MainActivity.this, ProfileActivity.class);
+                        startActivity(myIntentProfile);
                         return true;
                     case R.id.nav_Logout:
                         //Toast.makeText(this, "Logout ^^", Toast.LENGTH_SHORT).show();

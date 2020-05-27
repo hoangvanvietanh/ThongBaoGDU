@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.core.content.ContextCompat
 import com.alamkanak.weekview.WeekViewDisplayable
 import com.android.thongbaogdu.R
-import com.android.thongbaogdu.data.model.Account
 import com.android.thongbaogdu.data.model.Event
-import com.android.thongbaogdu.services.AccountServices
 import com.android.thongbaogdu.services.EmployeeServices
 import java.text.DateFormat
 import java.text.SimpleDateFormat

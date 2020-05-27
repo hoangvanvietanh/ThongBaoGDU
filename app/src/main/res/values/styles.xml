@@ -6,7 +6,6 @@
         <item name="colorPrimary">@color/colorWhite</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
         <item name="drawerArrowStyle">@style/DrawerHamburgerStyle</item>
     </style>
 
@@ -16,7 +15,6 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
-
     </style>
 
 

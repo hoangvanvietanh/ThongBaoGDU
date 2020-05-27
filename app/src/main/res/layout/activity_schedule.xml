@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.schedule.ScheduleActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGduBlue"
+        app:titleTextColor="@color/colorWhite"
+        app:navigationIcon="@drawable/ic_arrow_back_white"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/btnAddSchedule"
         android:layout_width="297dp"

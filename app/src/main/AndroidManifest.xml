@@ -13,12 +13,20 @@
         android:roundIcon="@drawable/logogdu"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:parentActivityName="com.android.thongbaogdu.MainActivity"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.profile.ProfileActivity"></activity>
-        <activity android:name=".ui.schedule.ScheduleActivity" />
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.schedule.ScheduleActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login">
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
