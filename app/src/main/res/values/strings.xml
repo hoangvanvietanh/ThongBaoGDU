@@ -36,4 +36,14 @@
     <string name="title_menu_he_thong"><font color="#ffffff">Hệ thống</font></string>
     <string name="txt_comments">Đóng góp ý kiến</string>
     <string name="txt_edit_user">Sửa thông tin</string>
+
+
+    <string name="txt_full_name">Họ tên</string>
+    <string name="txt_address">Địa chỉ</string>
+    <string name="txt_phone_number">SĐT</string>
+    <string name="txt_email">Emai</string>
+    <string name="txt_date_of_birth">Ngày sinh</string>
+    <string name="txt_department_name">Phòng ban</string>
+    <string name="txt_position">Chức vụ</string>
+    <string name="txt_role">Vai trò</string>
 </resources>

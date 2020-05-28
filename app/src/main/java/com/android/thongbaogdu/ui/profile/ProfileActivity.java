@@ -6,14 +6,15 @@ import androidx.core.content.ContextCompat;
 
 import com.android.thongbaogdu.MainActivity;
 import com.android.thongbaogdu.R;
-import com.android.thongbaogdu.ui.notification.NoticeDialogFragment;
-import com.android.thongbaogdu.ui.schedule.ScheduleActivity;
+import com.android.thongbaogdu.services.AccountServices;
+import com.android.thongbaogdu.ui.dialog.DialogEditInfoFragment;
+import com.android.thongbaogdu.ui.dialog.DialogShowInfoFragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -52,8 +53,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 Toast.makeText(ProfileActivity.this, "view ok", Toast.LENGTH_SHORT).show();
-
-                NoticeDialogFragment noticeDialogFragment = new NoticeDialogFragment();
+                AccountServices accountServices = new AccountServices();
+                SharedPreferences sp1=ProfileActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
+                String userName=sp1.getString("UserName", null);
+                String password = sp1.getString("Password", null);
+                DialogShowInfoFragment noticeDialogFragment = new DialogShowInfoFragment(accountServices.login(userName,password));
                 noticeDialogFragment.show(getSupportFragmentManager(), "Hiển thị nè");
 
             }
@@ -63,6 +67,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 Toast.makeText(ProfileActivity.this, "edit user ok", Toast.LENGTH_SHORT).show();
+                AccountServices accountServices = new AccountServices();
+                SharedPreferences sp1=ProfileActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
+                String userName=sp1.getString("UserName", null);
+                String password = sp1.getString("Password", null);
+                DialogEditInfoFragment noticeDialogFragment = new DialogEditInfoFragment(accountServices.login(userName,password));
+                noticeDialogFragment.show(getSupportFragmentManager(), "Hiển thị nè");
             }
         });
 
