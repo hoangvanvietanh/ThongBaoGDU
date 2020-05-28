@@ -6,6 +6,7 @@ import com.android.thongbaogdu.dao.IAccountDao;
 import com.android.thongbaogdu.daoimpl.AccountDaoImpl;
 import com.android.thongbaogdu.data.model.Account;
 import com.android.thongbaogdu.data.model.DataApi;
+import com.android.thongbaogdu.data.model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,13 @@ public class AccountServices {
     private  DataApi dataApi = new DataApi();
     private IAccountDao accountDao = new AccountDaoImpl();
 
-    public AccountServices() throws ExecutionException, InterruptedException {
+    public Employee login(String userName, String password)
+    {
+        return accountDao.login(userName,password);
     }
 
-    public ArrayList<Account> getAllAccount()
-    {
-        return accountDao.getAllAccount();
-    }
+//    public ArrayList<Account> getAllAccount()
+//    {
+//        return accountDao.getAllAccount();
+//    }
 }

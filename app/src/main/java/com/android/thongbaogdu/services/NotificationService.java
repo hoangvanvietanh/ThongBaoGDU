@@ -51,44 +51,44 @@ public class NotificationService {
 
     public void createNotification(Context context, String ALARM_SERVICE, String username)
     {
-        EmployeeServices employeeServices = new EmployeeServices();
-        ArrayList<Employee> employeeArrayList = employeeServices.getAllEmployee();
-        for(Employee employee: employeeArrayList)
-        {
-            if(employee.getEmail().equals(username))
-            {
-                for (Schedule schedule: employee.getSchedules())
-                {
-                    System.out.println("3");
-                    System.out.println(schedule.getMonth()-1+"-" + schedule.getDay_of_month()+"-" + schedule.getHour() +"-"+ schedule.getMinute());
-                    Toast.makeText(context, "Remider set haha!" +schedule.getHour()+"----"+schedule.getMinute() , Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context, ReminderBroadcast.class);
-                    int currentTimeMilli = (int)System.currentTimeMillis();
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context,currentTimeMilli,intent,PendingIntent.FLAG_ONE_SHOT);
-
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "vietanh")
-                            .setSmallIcon(R.drawable.ic_menu_camera)
-                            .setContentTitle("Thông báo họp vào lúc " + schedule.getHour() +":"+ schedule.getMinute())
-                            .setContentText("Nội dung: " + schedule.getContent())
-                            .setStyle(new NotificationCompat.BigTextStyle()
-                                    .bigText("Nội dung: " + schedule.getContent()))
-                            .setPriority(NotificationCompat.BADGE_ICON_LARGE);
-
-                    NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-                    notificationManagerCompat.notify(currentTimeMilli,builder.build());
-
-                    AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTimeInMillis(System.currentTimeMillis());
-                    System.out.println("time---------->"+ calendar.getTimeInMillis());
-                    calendar.set(schedule.getYear(),schedule.getMonth()-1,schedule.getDay_of_month(),schedule.getHour(),schedule.getMinute(),0);
-                    alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP , calendar.getTimeInMillis(),
-                            AlarmManager.INTERVAL_DAY, pendingIntent);
-                }
-            }
-
-
-        }
+//        EmployeeServices employeeServices = new EmployeeServices();
+//        ArrayList<Employee> employeeArrayList = employeeServices.getAllEmployee();
+//        for(Employee employee: employeeArrayList)
+//        {
+//            if(employee.getEmail().equals(username))
+//            {
+//                for (Schedule schedule: employee.getSchedules())
+//                {
+//                    System.out.println("3");
+//                    System.out.println(schedule.getMonth()-1+"-" + schedule.getDay_of_month()+"-" + schedule.getHour() +"-"+ schedule.getMinute());
+//                    Toast.makeText(context, "Remider set haha!" +schedule.getHour()+"----"+schedule.getMinute() , Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(context, ReminderBroadcast.class);
+//                    int currentTimeMilli = (int)System.currentTimeMillis();
+//                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context,currentTimeMilli,intent,PendingIntent.FLAG_ONE_SHOT);
+//
+//                    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "vietanh")
+//                            .setSmallIcon(R.drawable.ic_menu_camera)
+//                            .setContentTitle("Thông báo họp vào lúc " + schedule.getHour() +":"+ schedule.getMinute())
+//                            .setContentText("Nội dung: " + schedule.getContent())
+//                            .setStyle(new NotificationCompat.BigTextStyle()
+//                                    .bigText("Nội dung: " + schedule.getContent()))
+//                            .setPriority(NotificationCompat.BADGE_ICON_LARGE);
+//
+//                    NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
+//                    notificationManagerCompat.notify(currentTimeMilli,builder.build());
+//
+//                    AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+//                    Calendar calendar = Calendar.getInstance();
+//                    calendar.setTimeInMillis(System.currentTimeMillis());
+//                    System.out.println("time---------->"+ calendar.getTimeInMillis());
+//                    calendar.set(schedule.getYear(),schedule.getMonth()-1,schedule.getDay_of_month(),schedule.getHour(),schedule.getMinute(),0);
+//                    alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP , calendar.getTimeInMillis(),
+//                            AlarmManager.INTERVAL_DAY, pendingIntent);
+//                }
+//            }
+//
+//
+//        }
 
     }
 }

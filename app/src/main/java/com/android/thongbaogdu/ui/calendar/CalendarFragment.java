@@ -47,8 +47,9 @@ public class CalendarFragment extends Fragment implements OnEventClickListener<E
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         SharedPreferences sp1=getContext().getSharedPreferences("Login", Context.MODE_PRIVATE);
-        String username=sp1.getString("UserName", null);
-        database = new EventsDatabase(getActivity(),username);
+        String userName=sp1.getString("UserName", null);
+        String password = sp1.getString("Password", null);
+        database = new EventsDatabase(getActivity(),userName,password);
         SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("dd-MMMM- yyyy", Locale.getDefault());
         Date currentDate = new Date();
         root = inflater.inflate(R.layout.fragment_calendar, container, false);

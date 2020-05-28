@@ -5,18 +5,19 @@ import androidx.core.content.ContextCompat
 import com.alamkanak.weekview.WeekViewDisplayable
 import com.android.thongbaogdu.R
 import com.android.thongbaogdu.data.model.Event
+import com.android.thongbaogdu.services.AccountServices
 import com.android.thongbaogdu.services.EmployeeServices
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class EventsDatabase(context: Context, username: String) {
+class EventsDatabase(context: Context, username: String, password: String) {
     private val color1 = ContextCompat.getColor(context, R.color.event_color_01)
     private val color2 = ContextCompat.getColor(context, R.color.event_color_02)
     private val color3 = ContextCompat.getColor(context, R.color.event_color_03)
     private val color4 = ContextCompat.getColor(context, R.color.event_color_04)
-    private val employeeServices =  EmployeeServices().getEmployByUserName(username);
-
+    //private val employeeServices =  EmployeeServices().getEmployByUserName(username);
+    private val accountServices = AccountServices().login(username,password);
     fun getEventsInRange(
         //startDate: Calendar,
         //endDate: Calendar
@@ -29,8 +30,8 @@ class EventsDatabase(context: Context, username: String) {
         //val idOffset = year + 10L * month
         val events = mutableListOf<WeekViewDisplayable<Event>>()
         var i  = 0;
-        println("sss---------------------------------------------------------------------------------------->" + employeeServices.account.userName)
-            for(schedule in employeeServices.schedules)
+        //println("sss---------------------------------------------------------------------------------------->" + employeeServices.account.userName)
+            for(schedule in accountServices.schedules)
             {
                 i += 1;
                 var color = color1;

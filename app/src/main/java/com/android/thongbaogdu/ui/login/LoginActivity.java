@@ -69,8 +69,8 @@ import java.util.Calendar;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-    private ArrayList<Employee> employeeArrayList = new ArrayList<Employee>();
-    private EmployeeServices employeeServices = new EmployeeServices();
+    //private ArrayList<Employee> employeeArrayList = new ArrayList<Employee>();
+    //private EmployeeServices employeeServices = new EmployeeServices();
     private EditText usernameEditText;
     private EditText passwordEditText;
     @Override
@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+
         SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
         String userName=sp1.getString("UserName", null);
         String password = sp1.getString("Password", null);
@@ -105,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
         createNotificationChannel();
 
-        employeeArrayList = employeeServices.getAllEmployee();
+        //employeeArrayList = employeeServices.getAllEmployee();
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -183,8 +184,8 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor Ed=sp.edit();
                 Ed.putString("UserName",usernameEditText.getText().toString());
                 Ed.putString("Password",passwordEditText.getText().toString());
-                //Toast.makeText(this, "Okey con dê " + usernameEditText.getText().toString(), Toast.LENGTH_SHORT).show();
                 Ed.commit();
+
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
@@ -198,19 +199,23 @@ public class LoginActivity extends AppCompatActivity {
         // TODO : initiate successful logged in experience
         Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
         myIntent.putExtra("USERNAME",model.getDisplayName());
-
-
-
         startActivity(myIntent);
 
-        for(Employee employee: employeeArrayList)
-        {
-            Toast.makeText(this, employee.getFullName(), Toast.LENGTH_SHORT).show();
-        }
+//        for(Employee employee: employeeArrayList)
+//        {
+//            Toast.makeText(this, employee.getFullName(), Toast.LENGTH_SHORT).show();
+//        }
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences.Editor Ed = sp.edit();
+        Ed.putString("UserName",null);
+        Ed.putString("Password",null);
+        Ed.apply();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
@@ -229,50 +234,50 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public class HttpSendData extends AsyncTask<Void, Void, String> {
-        static final String REQUEST_METHOD = "POST";
-        static final int READ_TIMEOUT = 15000;
-        static final int CONNECTION_TIMEOUT = 15000;
-        String _json = "";
-        public HttpSendData(String json)
-        {
-            this._json = json;
-        }
-
-        @Override
-        protected String doInBackground(Void... params){
-            try {
-                // connect to the server
-                URL myUrl = new URL("http://192.168.1.31:1200/Ma_so_Xu_ly=Ket_noi_tu_winform");
-                HttpURLConnection connection =(HttpURLConnection) myUrl.openConnection();
-                connection.setRequestMethod(REQUEST_METHOD);
-                connection.setRequestProperty("Content-Type", "application/json; utf-8");
-                connection.setDoOutput(true);
-                connection.setReadTimeout(READ_TIMEOUT);
-                connection.setConnectTimeout(CONNECTION_TIMEOUT);
-                connection.connect();
-
-                String jsonInputString = this._json;
-                try(OutputStream os = connection.getOutputStream()) {
-                    byte[] input = jsonInputString.getBytes("utf-8");
-                    os.write(input, 0, input.length);
-                }
-                try(BufferedReader br = new BufferedReader(
-                        new InputStreamReader(connection.getInputStream(), "utf-8"))) {
-                    StringBuilder response = new StringBuilder();
-                    String responseLine = null;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
-                    }
-                    System.out.println(response.toString());
-                }
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-            return "";
-        }
-        protected void onPostExecute(String result){
-            super.onPostExecute(result);
-        }
-    }
+//    public class HttpSendData extends AsyncTask<Void, Void, String> {
+//        static final String REQUEST_METHOD = "POST";
+//        static final int READ_TIMEOUT = 15000;
+//        static final int CONNECTION_TIMEOUT = 15000;
+//        String _json = "";
+//        public HttpSendData(String json)
+//        {
+//            this._json = json;
+//        }
+//
+//        @Override
+//        protected String doInBackground(Void... params){
+//            try {
+//                // connect to the server
+//                URL myUrl = new URL("http://192.168.1.31:1200/Ma_so_Xu_ly=Ket_noi_tu_winform");
+//                HttpURLConnection connection =(HttpURLConnection) myUrl.openConnection();
+//                connection.setRequestMethod(REQUEST_METHOD);
+//                connection.setRequestProperty("Content-Type", "application/json; utf-8");
+//                connection.setDoOutput(true);
+//                connection.setReadTimeout(READ_TIMEOUT);
+//                connection.setConnectTimeout(CONNECTION_TIMEOUT);
+//                connection.connect();
+//
+//                String jsonInputString = this._json;
+//                try(OutputStream os = connection.getOutputStream()) {
+//                    byte[] input = jsonInputString.getBytes("utf-8");
+//                    os.write(input, 0, input.length);
+//                }
+//                try(BufferedReader br = new BufferedReader(
+//                        new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+//                    StringBuilder response = new StringBuilder();
+//                    String responseLine = null;
+//                    while ((responseLine = br.readLine()) != null) {
+//                        response.append(responseLine.trim());
+//                    }
+//                    System.out.println(response.toString());
+//                }
+//            } catch(IOException e) {
+//                e.printStackTrace();
+//            }
+//            return "";
+//        }
+//        protected void onPostExecute(String result){
+//            super.onPostExecute(result);
+//        }
+//    }
 }

@@ -4,8 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Patterns;
 
+import com.android.thongbaogdu.MainActivity;
 import com.android.thongbaogdu.data.LoginRepository;
 import com.android.thongbaogdu.data.Result;
 import com.android.thongbaogdu.data.model.LoggedInUser;
