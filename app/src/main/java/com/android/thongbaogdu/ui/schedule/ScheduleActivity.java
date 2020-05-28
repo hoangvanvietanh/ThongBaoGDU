@@ -6,7 +6,9 @@ import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -154,6 +156,11 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
         dateTimeTo = formattedDateTo +" "+formattedTimeTo;
     }
 
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
 
     public int getDuration(String dateTimeFrom, String dateTimeTo)
     {

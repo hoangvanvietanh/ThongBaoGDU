@@ -1,6 +1,7 @@
 package com.android.thongbaogdu.daoimpl;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import com.android.thongbaogdu.config.Connection;
@@ -9,6 +10,7 @@ import com.android.thongbaogdu.data.model.Account;
 import com.android.thongbaogdu.data.model.DataApi;
 import com.android.thongbaogdu.data.model.Employee;
 import com.android.thongbaogdu.data.model.Schedule;
+import com.android.thongbaogdu.ui.login.LoginActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
@@ -110,6 +112,12 @@ public class AccountDaoImpl implements IAccountDao {
                 {
                     System.out.println("..............................");
                     System.out.println("--->" + result);
+                    Context context = LoginActivity.getAppContext();
+                    SharedPreferences sp= context.getSharedPreferences("user_data", context.MODE_PRIVATE);
+                    SharedPreferences.Editor Ed = sp.edit();
+                    Ed.putString("data",result);
+                    Ed.commit();
+
                     JSONObject arr = new JSONObject(result);
                     ObjectMapper mapper = new ObjectMapper();
                     Gson gson = new Gson();

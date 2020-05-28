@@ -13,6 +13,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,10 +74,12 @@ public class LoginActivity extends AppCompatActivity {
     //private EmployeeServices employeeServices = new EmployeeServices();
     private EditText usernameEditText;
     private EditText passwordEditText;
+    private static Context context;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        LoginActivity.context = getApplicationContext();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorGduBlue));
         }
@@ -88,9 +91,16 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
+
+
         SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
         String userName=sp1.getString("UserName", null);
         String password = sp1.getString("Password", null);
+
+
+        SharedPreferences sp= context.getSharedPreferences("user_data", context.MODE_PRIVATE);
+        String data=sp.getString("data", null);
+
 
         System.out.println("===> username: " + userName);
         System.out.println("===> password: " + password);
@@ -191,8 +201,20 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+
+
+
     }
 
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    public static Context getAppContext() {
+        return LoginActivity.context;
+    }
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();

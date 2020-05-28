@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
 import com.android.thongbaogdu.services.NotificationService;
+import com.android.thongbaogdu.ui.help.HelpActivity;
 import com.android.thongbaogdu.ui.login.LoginActivity;
 import com.android.thongbaogdu.ui.profile.ProfileActivity;
 import com.android.thongbaogdu.ui.schedule.ScheduleActivity;
+import com.android.thongbaogdu.ui.settings.SettingActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -71,6 +73,11 @@ public class MainActivity extends AppCompatActivity  {
         compactCalendarView.setUseThreeLetterAbbreviation(true);
         compactCalendarView.hideCalendar();
         actionBar = getSupportActionBar();
+
+        SharedPreferences sp1=this.getSharedPreferences("user_data", MODE_PRIVATE);
+        String data=sp1.getString("data", null);
+
+        System.out.println("$$============> "+ data);
 
         String username = getIntent().getStringExtra("USERNAME");
         Toast.makeText(this, "set đc nhè", Toast.LENGTH_SHORT).show();
@@ -159,6 +166,14 @@ public class MainActivity extends AppCompatActivity  {
                     case R.id.nav_info:
                         Intent myIntentProfile = new Intent(MainActivity.this, ProfileActivity.class);
                         startActivity(myIntentProfile);
+                        return true;
+                    case R.id.nav_setting:
+                        Intent myIntentSetting = new Intent(MainActivity.this, SettingActivity.class);
+                        startActivity(myIntentSetting);
+                        return true;
+                    case R.id.nav_help:
+                        Intent myIntentHelp = new Intent(MainActivity.this, HelpActivity.class);
+                        startActivity(myIntentHelp);
                         return true;
                     case R.id.nav_Logout:
                         //Toast.makeText(this, "Logout ^^", Toast.LENGTH_SHORT).show();

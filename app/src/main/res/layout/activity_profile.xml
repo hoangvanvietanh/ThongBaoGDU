@@ -11,8 +11,132 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGduBlue"
-        app:titleTextColor="@color/colorWhite"
         app:navigationIcon="@drawable/ic_arrow_back_white"
+        app:titleTextColor="@color/colorWhite"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="158dp"
+        android:layout_height="137dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtShowName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarProfile"
+        app:srcCompat="@drawable/logogdu" />
+
+    <TextView
+        android:id="@+id/txtShowName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xin chào Hoàng Văn Việt Anh"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <ImageButton
+        android:id="@+id/btnShowInfo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/colorGduBlue"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditUser"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:srcCompat="@drawable/ic_assignment_ind_white_24dp" />
+
+    <ImageButton
+        android:id="@+id/btnEditUser"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/colorGduBlue"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnShowInfo"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:srcCompat="@drawable/ic_edit_white_24dp" />
+
+    <ImageButton
+        android:id="@+id/btnChangePass"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/colorGduBlue"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/btnComments"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/ic_key_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/btnComments"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/colorGduBlue"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnChangePass"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:srcCompat="@drawable/ic_assignment_white_24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.46" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_more_info"
+        app:layout_constraintBottom_toTopOf="@+id/btnChangePass"
+        app:layout_constraintEnd_toEndOf="@+id/btnShowInfo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnShowInfo"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowInfo" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_edit_user"
+        app:layout_constraintBottom_toTopOf="@+id/btnComments"
+        app:layout_constraintEnd_toEndOf="@+id/btnEditUser"
+        app:layout_constraintStart_toStartOf="@+id/btnEditUser"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditUser" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_change_pass"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/btnChangePass"
+        app:layout_constraintStart_toStartOf="@+id/btnChangePass"
+        app:layout_constraintTop_toBottomOf="@+id/btnChangePass" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_comments"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/btnComments"
+        app:layout_constraintStart_toStartOf="@+id/btnComments"
+        app:layout_constraintTop_toBottomOf="@+id/btnComments" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

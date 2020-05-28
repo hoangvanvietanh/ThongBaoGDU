@@ -8,106 +8,127 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarSchedule"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:background="@color/colorGduBlue"
-        app:titleTextColor="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back_white"
+        app:titleTextColor="@color/colorWhite"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnAddSchedule"
         android:layout_width="297dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="230dp"
         android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.649"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextContent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
     <Switch
         android:id="@+id/switchAllDay"
-        android:layout_width="260dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="40dp"
         android:text="All-day"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageButton" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintBottom_toBottomOf="@+id/switchAllDay"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonTimeFrom"
+        app:layout_constraintEnd_toStartOf="@+id/switchAllDay"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarSchedule"
         app:srcCompat="@drawable/ic_menu_camera" />
 
     <EditText
         android:id="@+id/editTextContent"
-        android:layout_width="257dp"
-        android:layout_height="116dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="261dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="61dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="@+id/buttonTimeTo"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddSchedule"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDateTo" />
+        app:layout_constraintTop_toTopOf="@+id/buttonTimeTo"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="131dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddSchedule"
+        app:layout_constraintEnd_toStartOf="@+id/editTextContent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTimeTo"
         app:srcCompat="@drawable/ic_menu_gallery" />
 
     <Button
         android:id="@+id/buttonDateFrom"
-        android:layout_width="131dp"
+        android:layout_width="0dp"
         android:layout_height="47dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginEnd="17dp"
         android:text="Date From"
-        app:layout_constraintStart_toStartOf="@+id/switchAllDay"
-        app:layout_constraintTop_toBottomOf="@+id/switchAllDay" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonTimeFrom"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTimeFrom"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonTimeFrom"
-        android:layout_width="112dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="18dp"
         android:text="Time From"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonDateFrom"
-        app:layout_constraintEnd_toEndOf="@+id/switchAllDay"
-        app:layout_constraintTop_toBottomOf="@+id/switchAllDay" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonTimeTo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonDateFrom"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <Button
         android:id="@+id/buttonDateTo"
-        android:layout_width="131dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginEnd="17dp"
         android:text="Date To"
-        app:layout_constraintStart_toStartOf="@+id/buttonDateFrom"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDateFrom" />
+        app:layout_constraintBottom_toBottomOf="@+id/buttonTimeTo"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTimeTo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonTimeTo" />
 
     <Button
         android:id="@+id/buttonTimeTo"
-        android:layout_width="114dp"
-        android:layout_height="51dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="15dp"
         android:text="Time To"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonDateTo"
-        app:layout_constraintEnd_toEndOf="@+id/switchAllDay"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/buttonTimeFrom"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTimeFrom"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toTopOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonDateTo"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTimeFrom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

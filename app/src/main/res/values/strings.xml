@@ -7,6 +7,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_profile">Tài khoản</string>
     <string name="nav_logout">Đăng xuất</string>
+    <string name="nav_help">Trợ giúp</string>
+    <string name="nav_setting">Cài đặt</string>
     <string name="action_settings">Làm mới</string>
     <string name="title_menu"><font color="#ffffff">Tài khoản</font></string>
 
@@ -29,4 +31,9 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="txt_more_info">Xem thông tin</string>
+    <string name="txt_change_pass">Đổi mật khẩu</string>
+    <string name="title_menu_he_thong"><font color="#ffffff">Hệ thống</font></string>
+    <string name="txt_comments">Đóng góp ý kiến</string>
+    <string name="txt_edit_user">Sửa thông tin</string>
 </resources>

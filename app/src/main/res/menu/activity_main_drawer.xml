@@ -30,6 +30,18 @@
                     android:title="@string/nav_logout" />
             </menu>
         </item>
+        <item android:title="@string/title_menu_he_thong">
+            <menu>
+                <item
+                    android:id="@+id/nav_setting"
+                    android:icon="@drawable/ic_settings_white_24dp"
+                    android:title="@string/nav_setting"/>
+                <item
+                    android:id="@+id/nav_help"
+                    android:icon="@drawable/ic_help_white_24dp"
+                    android:title="@string/nav_help"/>
+            </menu>
+        </item>
     </group>
 
 </menu>
