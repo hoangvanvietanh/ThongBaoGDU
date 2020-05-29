@@ -7,7 +7,7 @@ import com.android.thongbaogdu.data.model.Employee;
 import java.util.ArrayList;
 
 public class EmployeeServices {
-//    IEmployeeDao employeeDao = new EmployeeDaoImpl();
+    IEmployeeDao employeeDao = new EmployeeDaoImpl();
 //
 //    public ArrayList<Employee> getAllEmployee()
 //    {
@@ -20,8 +20,8 @@ public class EmployeeServices {
 //        return  employeeDao.getEmployeeByUserName(username);
 //    }
 
-    public void convertJSONToEmployee(String json)
+    public void updateEmployee(Employee employee)
     {
-
+        employeeDao.updateEmployee(employee);
     }
 }

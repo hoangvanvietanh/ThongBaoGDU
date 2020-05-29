@@ -196,6 +196,10 @@ public class LoginActivity extends AppCompatActivity {
                 Ed.putString("Password",passwordEditText.getText().toString());
                 Ed.commit();
 
+                SharedPreferences sp1=getSharedPreferences("user_data", MODE_PRIVATE);
+                SharedPreferences.Editor Ed1 =sp1.edit();
+                Ed1.putString("data",null);
+                Ed1.commit();
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());

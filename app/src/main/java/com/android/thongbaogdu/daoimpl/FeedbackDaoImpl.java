@@ -3,9 +3,8 @@ package com.android.thongbaogdu.daoimpl;
 import android.os.AsyncTask;
 
 import com.android.thongbaogdu.config.Connection;
-import com.android.thongbaogdu.dao.IEmployeeDao;
-import com.android.thongbaogdu.data.model.DataApi;
-import com.android.thongbaogdu.data.model.Employee;
+import com.android.thongbaogdu.dao.IFeedbackDao;
+import com.android.thongbaogdu.data.model.Feedback;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -14,20 +13,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
-public class EmployeeDaoImpl implements IEmployeeDao {
-
+public class FeedbackDaoImpl implements IFeedbackDao {
 
     @Override
-    public void updateEmployee(Employee employee)
-    {
+    public void sendFeedback(Feedback feedback) {
         Gson gson = new Gson();
-        String json = gson.toJson(employee);
-        EmployeeDaoImpl.HttpSendData httpSendData = new EmployeeDaoImpl.HttpSendData(json);
+        String json = gson.toJson(feedback);
+        FeedbackDaoImpl.HttpSendData httpSendData = new FeedbackDaoImpl.HttpSendData(json);
         httpSendData.execute();
     }
-
 
     private class HttpSendData extends AsyncTask<Void, Void, String> {
         static final String REQUEST_METHOD = "POST";
@@ -43,7 +38,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
         protected String doInBackground(Void... params){
             try {
                 // connect to the server
-                URL myUrl = new URL(Connection.URL_UpdateEmployee);
+                URL myUrl = new URL(Connection.URL_AddFeedback);
                 HttpURLConnection connection =(HttpURLConnection) myUrl.openConnection();
                 connection.setRequestMethod(REQUEST_METHOD);
                 connection.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -75,24 +70,4 @@ public class EmployeeDaoImpl implements IEmployeeDao {
             super.onPostExecute(result);
         }
     }
-//    private DataApi dataApi = new DataApi();
-//
-//    @Override
-//    public ArrayList<Employee> getAllEmployee() {
-//        System.out.println("Dao impl ------------------------>" + dataApi.getAllEmployee().size());
-//        return dataApi.getAllEmployee();
-//    }
-//
-//    @Override
-//    public Employee getEmployeeByUserName(String username) {
-//        Employee employee = new Employee();
-//        for (Employee emp:  dataApi.getAllEmployee())
-//        {
-//            if(emp.getAccount().getUserName().trim().equals(username.trim()))
-//            {
-//                employee = emp;
-//            }
-//        }
-//        return employee;
-//    }
 }

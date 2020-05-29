@@ -51,8 +51,8 @@
     <string name="txt_password_change">Mật khẩu mới</string>
     <string name="txt_password_change_again">Nhập lại mật khẩu</string>
     <string name="txt_title_dialog_comments">Góp ý kiến</string>
-    <string name="txt_subject_comment">Tiêu đề</string>
-    <string name="txt_content_comment">Nội dung</string>
+    <string name="txt_subject_feedback">Tiêu đề</string>
+    <string name="txt_content_feedback">Nội dung</string>
     <string name="txt_title_change_password">Đổi mật khẩu</string>
     <string name="txt_title_dialog_show_info">Thông tin tài khoản</string>
     <string name="txt_title_edit_user">Sửa thông tin tài khoản</string>

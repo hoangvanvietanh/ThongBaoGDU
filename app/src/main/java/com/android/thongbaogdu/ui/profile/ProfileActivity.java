@@ -8,7 +8,7 @@ import com.android.thongbaogdu.MainActivity;
 import com.android.thongbaogdu.R;
 import com.android.thongbaogdu.services.AccountServices;
 import com.android.thongbaogdu.ui.dialog.DialogChangePasswordFragment;
-import com.android.thongbaogdu.ui.dialog.DialogCommentsFragment;
+import com.android.thongbaogdu.ui.dialog.DialogFeedbackFragment;
 import com.android.thongbaogdu.ui.dialog.DialogEditInfoFragment;
 import com.android.thongbaogdu.ui.dialog.DialogShowInfoFragment;
 
@@ -18,10 +18,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
-
+    private AccountServices accountServices = new AccountServices();
+    private String userName, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorGduBlue));
         }
+        SharedPreferences sp1=ProfileActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
+         userName = sp1.getString("UserName", null);
+         password = sp1.getString("Password", null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarProfile);
         setSupportActionBar(toolbar);
@@ -54,11 +57,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnViewInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ProfileActivity.this, "view ok", Toast.LENGTH_SHORT).show();
-                AccountServices accountServices = new AccountServices();
-                SharedPreferences sp1=ProfileActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
-                String userName=sp1.getString("UserName", null);
-                String password = sp1.getString("Password", null);
                 DialogShowInfoFragment noticeDialogFragment = new DialogShowInfoFragment(accountServices.login(userName,password));
                 noticeDialogFragment.show(getSupportFragmentManager(), "Hiển thị nè");
 
@@ -68,11 +66,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ProfileActivity.this, "edit user ok", Toast.LENGTH_SHORT).show();
-                AccountServices accountServices = new AccountServices();
-                SharedPreferences sp1=ProfileActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
-                String userName=sp1.getString("UserName", null);
-                String password = sp1.getString("Password", null);
                 DialogEditInfoFragment noticeDialogFragment = new DialogEditInfoFragment(accountServices.login(userName,password));
                 noticeDialogFragment.show(getSupportFragmentManager(), "Hiển thị nè");
             }
@@ -81,8 +74,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ProfileActivity.this, "change pass ok", Toast.LENGTH_SHORT).show();
-                DialogChangePasswordFragment noticeDialogFragment = new DialogChangePasswordFragment();
+                DialogChangePasswordFragment noticeDialogFragment = new DialogChangePasswordFragment(accountServices.login(userName,password));
                 noticeDialogFragment.show(getSupportFragmentManager(), "Hiển thị nè");
             }
         });
@@ -90,8 +82,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ProfileActivity.this, "Comment ok", Toast.LENGTH_SHORT).show();
-                DialogCommentsFragment noticeDialogFragment = new DialogCommentsFragment();
+                DialogFeedbackFragment noticeDialogFragment = new DialogFeedbackFragment();
                 noticeDialogFragment.show(getSupportFragmentManager(), "Hiển thị nè");
             }
         });

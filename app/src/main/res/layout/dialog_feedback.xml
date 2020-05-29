@@ -9,9 +9,9 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_subject_comment"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextSubjectComment"
-        app:layout_constraintEnd_toStartOf="@+id/editTextSubjectComment"
+        android:text="@string/txt_subject_feedback"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextSubjectFeedback"
+        app:layout_constraintEnd_toStartOf="@+id/editTextSubjectFeedback"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -19,26 +19,26 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_content_comment"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextContentComment"
+        android:text="@string/txt_content_feedback"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextContentFeedback"
         app:layout_constraintStart_toStartOf="@+id/textView12" />
 
     <EditText
-        android:id="@+id/editTextSubjectComment"
+        android:id="@+id/editTextSubjectFeedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Nhập tiêu đề"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextContentComment"
+        app:layout_constraintBottom_toTopOf="@+id/editTextContentFeedback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitleComment" />
 
     <EditText
-        android:id="@+id/editTextContentComment"
+        android:id="@+id/editTextContentFeedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -46,8 +46,8 @@
         android:hint="Nhập nội dung"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintEnd_toEndOf="@+id/editTextSubjectComment"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSubjectComment" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextSubjectFeedback"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSubjectFeedback" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier3"
