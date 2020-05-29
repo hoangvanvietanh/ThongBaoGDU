@@ -7,6 +7,8 @@ import androidx.core.content.ContextCompat;
 import com.android.thongbaogdu.MainActivity;
 import com.android.thongbaogdu.R;
 import com.android.thongbaogdu.services.AccountServices;
+import com.android.thongbaogdu.ui.dialog.DialogChangePasswordFragment;
+import com.android.thongbaogdu.ui.dialog.DialogCommentsFragment;
 import com.android.thongbaogdu.ui.dialog.DialogEditInfoFragment;
 import com.android.thongbaogdu.ui.dialog.DialogShowInfoFragment;
 
@@ -80,6 +82,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 Toast.makeText(ProfileActivity.this, "change pass ok", Toast.LENGTH_SHORT).show();
+                DialogChangePasswordFragment noticeDialogFragment = new DialogChangePasswordFragment();
+                noticeDialogFragment.show(getSupportFragmentManager(), "Hiển thị nè");
             }
         });
 
@@ -87,6 +91,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 Toast.makeText(ProfileActivity.this, "Comment ok", Toast.LENGTH_SHORT).show();
+                DialogCommentsFragment noticeDialogFragment = new DialogCommentsFragment();
+                noticeDialogFragment.show(getSupportFragmentManager(), "Hiển thị nè");
             }
         });
     }

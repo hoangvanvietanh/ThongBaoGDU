@@ -46,4 +46,17 @@
     <string name="txt_department_name">Phòng ban</string>
     <string name="txt_position">Chức vụ</string>
     <string name="txt_role">Vai trò</string>
+
+    <string name="txt_pass_current">Mật khẩu hiện tại</string>
+    <string name="txt_password_change">Mật khẩu mới</string>
+    <string name="txt_password_change_again">Nhập lại mật khẩu</string>
+    <string name="txt_title_dialog_comments">Góp ý kiến</string>
+    <string name="txt_subject_comment">Tiêu đề</string>
+    <string name="txt_content_comment">Nội dung</string>
+    <string name="txt_title_change_password">Đổi mật khẩu</string>
+    <string name="txt_title_dialog_show_info">Thông tin tài khoản</string>
+    <string name="txt_title_edit_user">Sửa thông tin tài khoản</string>
+
+    <string name="btn_save"><font color="#003262">Lưu</font></string>
+    <string name="btn_close"><font color="#003262">Đóng</font></string>
 </resources>

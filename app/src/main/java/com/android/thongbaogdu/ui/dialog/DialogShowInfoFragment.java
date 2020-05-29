@@ -32,7 +32,7 @@ public class DialogShowInfoFragment extends DialogFragment {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(view)
                 // Add action buttons
-                .setPositiveButton("Đóng", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.btn_close, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // sign in the user ...
