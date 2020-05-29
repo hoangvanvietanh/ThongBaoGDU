@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -111,7 +112,9 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                     System.out.println("Kết quả ===>" + Year +"--"+Month+"--"+Day+"--"+Hour+"--"+Minute + "----"+duration);
                     Toast.makeText(ScheduleActivity.this, "hahahah", Toast.LENGTH_SHORT).show();
                     Schedule schedule = new Schedule(100,Year,Month+1,Day,Hour,Minute,duration,4,isAllDay,false,editText.getText().toString());
-                    String username = getIntent().getStringExtra("USERNAME");
+                    SharedPreferences sp1=getSharedPreferences("Login", MODE_PRIVATE);
+                    String username=sp1.getString("UserName", null);
+
                     scheduleService.addSchedule(schedule,username);
                     Intent myIntent = new Intent(ScheduleActivity.this, MainActivity.class);
 
