@@ -59,4 +59,11 @@
 
     <string name="btn_save"><font color="#003262">Lưu</font></string>
     <string name="btn_close"><font color="#003262">Đóng</font></string>
+    <string-array name="list_color_events">
+        <item>Màu cam</item>
+        <item>Màu xanh nước</item>
+        <item>Đỏ</item>
+        <item>Xanh lá</item>
+
+</string-array>
 </resources>

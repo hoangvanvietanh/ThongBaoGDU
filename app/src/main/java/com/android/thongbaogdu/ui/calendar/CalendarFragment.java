@@ -31,6 +31,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -75,24 +77,49 @@ public class CalendarFragment extends Fragment implements OnEventClickListener<E
 
     @Override
     public void onEventClick(@NonNull Event event, @NonNull RectF eventRect) {
-        Toast.makeText(getActivity(), "Clicked " + event.getTitle(), LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Clicked " + event.getTitle() + "id: " + event.getId(), LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onEventLongClick(@NonNull Event event, @NonNull RectF eventRect) {
-        Toast.makeText(getActivity(), "Long-clicked event: " + event.getTitle(), LENGTH_SHORT).show();
+        String[] arrays = event.getTitle().split("of");
+        System.out.println(event.getTitle() + "========" + arrays[1].toString());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        //String dateEvent = dateFormat.format(arrays[1]);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        //String timeEvent = timeFormat.format(arrays[1].substring(0,6).toString());
+        String getTime = arrays[1].substring(0,6);
+        String[] getDate = arrays[1].substring(7).split(" ");
+        System.out.println("đc nè hihi: " + getDate[0] + "/" + getDate[2].split(",")[0] + "/" + getDate[3]);
+        Intent myIntent2 = new Intent(getContext(), ScheduleActivity.class);
+        String username = getActivity().getIntent().getStringExtra("USERNAME");
+        myIntent2.putExtra("USERNAME",username);
+        myIntent2.putExtra("eventDate",getDate[0] + "/" + getDate[2].split(",")[0] + "/" + getDate[3]);
+        myIntent2.putExtra("eventTime",arrays[1].substring(0,6));
+        myIntent2.putExtra("eventId", event.getId());
+        myIntent2.putExtra("eventContent",event.getLocation());
+        startActivity(myIntent2);
+        Toast.makeText(getActivity(), "Long-clicked event: " + event.getLocation(), LENGTH_SHORT).show();
     }
 
     @Override
     public void onEmptyViewLongClick(@NonNull Calendar time) {
+        System.out.println("-->nai" + time.getTime());
+        //DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dateEvent = dateFormat.format(time.getTime());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        String timeEvent = timeFormat.format(time.getTime());
         String username = getActivity().getIntent().getStringExtra("USERNAME");
         Intent myIntent2 = new Intent(getContext(), ScheduleActivity.class);
         myIntent2.putExtra("USERNAME",username);
+        myIntent2.putExtra("eventDate",dateEvent);
+        myIntent2.putExtra("eventTime",timeEvent);
         startActivity(myIntent2);
 
-        DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
-        String formattedTime = sdf.format(time.getTime());
-        Toast.makeText(getActivity(), "Empty view long pressed: " + formattedTime, LENGTH_SHORT).show();
+
+        //Toast.makeText(getActivity(), "Empty view long pressed: " + formattedTime, LENGTH_SHORT).show();
     }
 
     @Override

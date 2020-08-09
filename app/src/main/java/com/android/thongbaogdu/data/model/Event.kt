@@ -11,10 +11,10 @@ class Event(
     val title: String,
     private val startTime: Calendar,
     private val endTime: Calendar,
-    private val location: String,
-    private val color: Int,
-    private val isAllDay: Boolean,
-    private val isCanceled: Boolean
+     val location: String,
+    val color: Int,
+    val isAllDay: Boolean,
+    val isCanceled: Boolean
 ) : WeekViewDisplayable<Event> {
 
     override fun toWeekViewEvent(): WeekViewEvent<Event> {
